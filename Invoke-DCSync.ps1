@@ -85,8 +85,8 @@ if ($confirmation -eq 'y') {
     Invoke-ADRecon -method LDAP -Collect Users -OutputType CSV -ADROutputDir $PATH | Out-Null
 
     # create temporary NTLM only and users only files
-    (Get-Content -LiteralPath $LOGFILE) -notmatch '\$' | ForEach-Object {$_.Split("`t")[2]} > $HASHES
-    (Get-Content -LiteralPath $LOGFILE) -notmatch '\$' | ForEach-Object {$_.Split("`t")[1]} > $USERS
+    (Get-Content -LiteralPath $LOGFILE) | ForEach-Object {$_.Split("`t")[2]} > $HASHES
+    (Get-Content -LiteralPath $LOGFILE) | ForEach-Object {$_.Split("`t")[1]} > $USERS
 
     # create hashfile for pentest factory and convert user account attributes
     Write-Host ""
